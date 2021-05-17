@@ -1,4 +1,4 @@
-# Password Generator Starter Code
+# Password Generator
 
 ## Made With
 HTML, CSS, JavaScript
