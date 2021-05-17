@@ -18,39 +18,44 @@ function writePassword() {
     var upperCheck = document.getElementById("upper-option");
     var specCheck = document.getElementById("spec-option");
     var numCheck = document.getElementById("num-option");
-    if (lowerCheck.checked == true) {
+    var passwordText = document.querySelector("#password");
+    if (lowerCheck.checked === true) {
       for (i = 0; i < letters.length; i++) {
         options.push(letters[i])
       };
     };
 
-    if (upperCheck.checked == true) {
+    if (upperCheck.checked === true) {
       for (i = 0; i < bigLetters.length; i++) {
         options.push(bigLetters[i])
       };
     };
 
-    if (specCheck.checked == true) {
+    if (specCheck.checked === true) {
       for (i = 0; i < specCharacters.length; i++) {
         options.push(specCharacters[i])
       };
     };
 
-    if (numCheck.checked == true) {
+    if (numCheck.checked === true) {
       for (i = 0; i < numbers.length; i++) {
         options.push(numbers[i])
       };
-
     };
 
-    for (i = 0; i < passwordLength.value; i++) {
-      realPassword += options[Math.floor((Math.random() * options.length))]
+    if (lowerCheck.checked === false && upperCheck.checked === false && specCheck.checked === false && numCheck.checked === false) {
+      alert("You must check a box first.");
     };
-    console.log(Math.floor((Math.random() * options.length) + 1));
-    console.log(options);
-    console.log(passwordLength.value);
-    var passwordText = document.querySelector("#password");
-    passwordText.textContent = realPassword;
+    if (passwordLength < 8 || passwordLength > 128) {
+      alert("Password must be more than 8 characters and less than 128 characters.")
+      return;
+    }
+    else {
+      for (i = 0; i < passwordLength.value; i++) {
+        realPassword += options[Math.floor((Math.random() * options.length))]
+      };
+      passwordText.textContent = realPassword;
+    };
   };
 
   var password = generatePassword();
